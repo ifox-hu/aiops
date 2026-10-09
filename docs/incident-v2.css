@@ -79,6 +79,16 @@
 .iv-checklist li span { width: 9px; height: 9px; border: 1px solid #cbd5e3; border-radius: 50%; background: #fff; }
 .iv-checklist li.done { color: var(--v2-green); font-weight: 600; }
 .iv-checklist li.done span { border-color: var(--v2-green); background: var(--v2-green); }
+@media (min-width: 1121px) {
+  .iv-layout { height: clamp(600px, calc(100dvh - 252px), 860px); min-height: 0; align-items: stretch; }
+  .iv-main { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .iv-tabs { flex: 0 0 auto; }
+  .iv-pane.active { flex: 1; min-height: 0; overflow: auto; }
+  .iv-pane.active[data-iv-pane="diagnosis"] { display: flex; flex-direction: column; overflow: hidden; }
+  .iv-pane.active[data-iv-pane="diagnosis"] > .iv-diagnosis-note,
+  .iv-pane.active[data-iv-pane="diagnosis"] > .iv-steps { flex: 0 0 auto; }
+  .iv-report { flex: 1 1 auto; min-height: 190px; max-height: none; overflow: auto; }
+}
 @media (max-width: 1120px) { .iv-layout { grid-template-columns: 1fr; } .iv-side { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 820px) { .iv-evidence-grid, .iv-handover-grid { grid-template-columns: 1fr; } }
 @media (max-width: 680px) { .iv-head, .iv-subhead { flex-direction: column; } .iv-actions { justify-content: flex-start; } .iv-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } .iv-facts .v2-fact:nth-child(2) { border-right: 0; } .iv-facts .v2-fact:nth-child(-n + 2) { border-bottom: 1px solid var(--v2-line); } .iv-steps, .iv-side { grid-template-columns: 1fr; } .iv-pane { padding: 14px; } .iv-log-line { grid-template-columns: 1fr 44px; gap: 4px 8px; } .iv-log-line time { grid-column: 1 / -1; } }
