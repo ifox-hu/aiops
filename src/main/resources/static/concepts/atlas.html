@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>知识星图 | AIOps 智能运维</title>
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="atlas.css">
+</head>
+<body class="atlas">
+  <header class="concept-top">
+    <a class="concept-brand" href="index.html">
+      <span class="concept-brand-mark">A</span>
+      <span>AIOps <small>Knowledge atlas</small></span>
+    </a>
+    <div class="concept-actions">
+      <span class="eyebrow">RAG / TRACE ENABLED</span>
+      <a class="concept-link" href="index.html">返回试样</a>
+    </div>
+  </header>
+
+  <main class="atlas-layout">
+    <section class="atlas-chat">
+      <div class="atlas-chat-head">
+        <div>
+          <p class="eyebrow">ASK / 知识助手</p>
+          <h1>先问，再沿着证据找下去。</h1>
+        </div>
+        <div class="atlas-mode" role="group" aria-label="回答模式">
+          <button class="active" type="button" data-atlas-mode="balanced">平衡</button>
+          <button type="button" data-atlas-mode="precise">严谨</button>
+          <button type="button" data-atlas-mode="explore">探索</button>
+        </div>
+      </div>
+
+      <div class="atlas-thread" data-atlas-thread>
+        <p class="atlas-question">订单服务响应变慢，应该先看哪些指标？</p>
+        <article class="atlas-answer">
+          <h2>先确认瓶颈是在服务内部，还是数据库等待。</h2>
+          <p>建议按“入口指标 → 依赖指标 → 执行计划”的顺序排查。当前知识库中，连接池等待和慢 SQL 是两条最需要先对齐的证据。</p>
+          <ol>
+            <li>观察订单服务 P95、错误率与吞吐是否同步变化。<span class="atlas-citation">M-01</span></li>
+            <li>对比数据库连接池等待时间与活跃连接数。<span class="atlas-citation">D-02</span></li>
+            <li>定位慢查询，检查扫描行数与执行计划。<span class="atlas-citation">S-03</span></li>
+          </ol>
+        </article>
+      </div>
+
+      <form class="atlas-composer" data-atlas-form>
+        <textarea name="question" aria-label="输入问题" placeholder="继续追问，例如：连接池等待和慢 SQL 的关系是什么？"></textarea>
+        <div class="atlas-composer-bar">
+          <small>知识库检索 + 引用溯源</small>
+          <button class="atlas-send" type="submit" aria-label="发送问题">↑</button>
+        </div>
+      </form>
+      <div class="atlas-prompts">
+        <button class="atlas-prompt" type="button" data-atlas-prompt="数据库连接池等待时间升高时，如何快速定位根因？">连接池根因</button>
+        <button class="atlas-prompt" type="button" data-atlas-prompt="慢 SQL 导致连接池耗尽有哪些典型特征？">慢 SQL 特征</button>
+        <button class="atlas-prompt" type="button" data-atlas-prompt="订单服务延迟升高时，哪些指标应该优先看？">指标排查顺序</button>
+      </div>
+    </section>
+
+    <section class="atlas-map">
+      <div class="atlas-map-head">
+        <div>
+          <h2>知识星图</h2>
+          <p>每个节点都是一条可追溯的知识线索。点击节点查看它与当前问题的关系。</p>
+        </div>
+      </div>
+      <div class="atlas-trace" data-atlas-trace aria-label="检索路径">
+        <span class="hit">Query 理解 / hit</span>
+        <span class="hit">连接池等待 / hit</span>
+        <span class="hit">慢 SQL / hit</span>
+        <span>订单索引 / related</span>
+        <span class="miss">缓存击穿 / miss</span>
+      </div>
+
+      <div class="atlas-graph">
+        <svg viewBox="0 0 720 520" role="img" aria-label="知识关系图">
+          <line class="atlas-edge" x1="360" y1="260" x2="150" y2="112"></line>
+          <line class="atlas-edge" x1="360" y1="260" x2="560" y2="120"></line>
+          <line class="atlas-edge" x1="360" y1="260" x2="145" y2="400"></line>
+          <line class="atlas-edge" x1="360" y1="260" x2="580" y2="398"></line>
+          <line class="atlas-edge" x1="150" y1="112" x2="560" y2="120"></line>
+          <line class="atlas-edge" x1="145" y1="400" x2="580" y2="398"></line>
+          <circle class="atlas-node selected" data-atlas-node="pool" cx="360" cy="260" r="14" role="button" tabindex="0"></circle>
+          <circle class="atlas-node" data-atlas-node="latency" cx="150" cy="112" r="10" role="button" tabindex="0"></circle>
+          <circle class="atlas-node" data-atlas-node="sql" cx="560" cy="120" r="10" role="button" tabindex="0"></circle>
+          <circle class="atlas-node" data-atlas-node="index" cx="145" cy="400" r="10" role="button" tabindex="0"></circle>
+          <circle class="atlas-node coral" data-atlas-node="cache" cx="580" cy="398" r="10" role="button" tabindex="0"></circle>
+          <text x="380" y="264">连接池等待</text>
+          <text x="94" y="108">订单延迟</text>
+          <text x="580" y="116">慢 SQL</text>
+          <text x="98" y="422">索引计划</text>
+          <text x="596" y="422">缓存击穿</text>
+        </svg>
+        <div class="atlas-node-label" data-atlas-label>
+          <strong>连接池等待</strong>
+          <p>当前问题的主症状。命中 3 篇文档，与慢 SQL 形成强关联。</p>
+        </div>
+      </div>
+
+      <div class="atlas-sources">
+        <p class="eyebrow" style="margin-bottom:8px">Sources / 命中依据</p>
+        <button class="atlas-source" type="button" data-atlas-source="database">
+          <span class="atlas-source-id">D-02</span>
+          <span><strong>数据库连接池排查指南</strong><small>第二章 · 等待时间与活跃连接</small></span>
+          <span class="atlas-source-score">0.92</span>
+        </button>
+        <button class="atlas-source" type="button" data-atlas-source="sql">
+          <span class="atlas-source-id">S-03</span>
+          <span><strong>慢 SQL 分析与优化</strong><small>执行计划 · 扫描行数 · 索引选择</small></span>
+          <span class="atlas-source-score">0.88</span>
+        </button>
+        <button class="atlas-source" type="button" data-atlas-source="orders">
+          <span class="atlas-source-id">M-01</span>
+          <span><strong>订单服务可观测性手册</strong><small>RED 指标 · 延迟与错误率联动</small></span>
+          <span class="atlas-source-score">0.81</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="concepts.js"></script>
+</body>
+</html>

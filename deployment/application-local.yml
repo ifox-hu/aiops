@@ -1,0 +1,27 @@
+server:
+  address: 127.0.0.1
+ai:
+  provider: openai
+relay:
+  base-url: https://api.apigoto.com
+  api-key: ${RELAY_API_KEY:}
+  model: deepseek-flash
+  reasoning-effort: low
+embedding:
+  provider: ollama
+  ollama:
+    base-url: http://127.0.0.1:11435
+    model: bge-m3
+spring:
+  ai:
+    mcp:
+      client:
+        enabled: false
+prometheus:
+  mock-enabled: true
+cls:
+  mock-enabled: true
+file:
+  upload:
+    path: D:/tools/superbizagent-data/uploads
+

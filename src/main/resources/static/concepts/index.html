@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>三种工作方式试样 | AIOps 智能运维</title>
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="board.css">
+</head>
+<body class="board">
+  <header class="concept-top">
+    <a class="concept-brand" href="../designs/index.html">
+      <span class="concept-brand-mark">A</span>
+      <span>AIOps <small>Concept review</small></span>
+    </a>
+    <div class="concept-actions">
+      <a class="concept-link" href="../designs/workbench-v2.html">返回值班工作台</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="board-head">
+      <div>
+        <p class="eyebrow">AIOPS / THREE WORKING MODES</p>
+        <h1>把同一场故障，<br>交给三种不同的工作方式。</h1>
+      </div>
+      <p>每页都使用同一组业务数据，但改变信息重心、操作节奏与视觉语言。可以直接点击进入，先感受哪一种更接近真实值班、复盘和知识检索场景。</p>
+    </section>
+
+    <section class="board-list" aria-label="试样入口">
+      <a class="board-item" href="signal.html">
+        <div class="board-index"><span>01 / 值班操作</span><span>SIGNAL DECK</span></div>
+        <div class="board-preview signal" aria-hidden="true">
+          <div class="preview-signal">
+            <div class="preview-signal-rail"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="preview-signal-main">
+              <div class="preview-signal-metric"></div>
+              <div class="preview-signal-track"><b></b><span></span><i></i></div>
+              <div class="preview-signal-track"><b></b><span></span><i></i></div>
+              <div class="preview-signal-track"><b></b><span></span><i></i></div>
+            </div>
+          </div>
+        </div>
+        <span class="eyebrow">Dark operations terminal</span>
+        <h2>信号甲板</h2>
+        <p>将告警、指标和处置动作压进一条 30 秒值班链路。适合高频切换、快速判断和键盘驱动。</p>
+        <div class="board-tags">
+          <span class="board-tag">高密度</span>
+          <span class="board-tag">实时感</span>
+          <span class="board-tag">操作优先</span>
+        </div>
+        <div class="board-enter"><span>进入信号甲板</span><b>↗</b></div>
+      </a>
+
+      <a class="board-item" href="casebook.html">
+        <div class="board-index"><span>02 / 复盘阅读</span><span>CASEBOOK</span></div>
+        <div class="board-preview casebook" aria-hidden="true">
+          <div class="preview-case">
+            <div class="preview-case-nav"></div>
+            <div class="preview-case-main">
+              <strong>慢 SQL 与连接池</strong>
+              <i></i><i></i><i></i><i></i>
+            </div>
+            <div class="preview-case-note"></div>
+          </div>
+        </div>
+        <span class="eyebrow">Editorial evidence dossier</span>
+        <h2>事故卷宗</h2>
+        <p>像阅读一份调查报告一样理解故障，把事实、推断和待验证项清楚地分层，适合复盘与交接。</p>
+        <div class="board-tags">
+          <span class="board-tag">可读性</span>
+          <span class="board-tag">证据链</span>
+          <span class="board-tag">复盘优先</span>
+        </div>
+        <div class="board-enter"><span>进入事故卷宗</span><b>↗</b></div>
+      </a>
+
+      <a class="board-item" href="atlas.html">
+        <div class="board-index"><span>03 / 知识检索</span><span>KNOWLEDGE ATLAS</span></div>
+        <div class="board-preview atlas" aria-hidden="true">
+          <div class="preview-atlas">
+            <div class="preview-atlas-chat"><i></i><i></i><i></i><i></i></div>
+            <div class="preview-atlas-graph"><b></b><b></b><b></b><b></b><b></b></div>
+          </div>
+        </div>
+        <span class="eyebrow">Conversation meets graph</span>
+        <h2>知识星图</h2>
+        <p>让检索过程可见，把问题、引用来源与知识节点放在同一屏，适合解释依据和探索关联。</p>
+        <div class="board-tags">
+          <span class="board-tag">可解释</span>
+          <span class="board-tag">图谱感</span>
+          <span class="board-tag">探索优先</span>
+        </div>
+        <div class="board-enter"><span>进入知识星图</span><b>↗</b></div>
+      </a>
+    </section>
+  </main>
+
+  <script src="concepts.js"></script>
+</body>
+</html>

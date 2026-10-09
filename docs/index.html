@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>AIOps 智能运维与知识助手平台</title>
+  <style>
+    :root { --ink:#14213d; --muted:#66758f; --line:#dce4ef; --blue:#2457e6; --bg:#f4f6fa; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-width:320px; color:var(--ink); background:radial-gradient(circle at 86% 8%,#e8efff 0,transparent 34%),linear-gradient(180deg,#fbfcff 0,var(--bg) 72%); font:16px/1.7 "Noto Sans SC","HarmonyOS Sans SC","MiSans","PingFang SC","Microsoft YaHei UI","Microsoft YaHei","Segoe UI",sans-serif; }
+    main { width:min(1120px,calc(100% - 36px)); margin:0 auto; padding:52px 0 64px; }
+    .eyebrow { color:var(--blue); font-size:12px; font-weight:700; letter-spacing:.14em; }
+    h1 { max-width:780px; margin:14px 0 0; font-size:clamp(34px,5vw,62px); line-height:1.12; letter-spacing:0; }
+    .intro { max-width:760px; margin:20px 0 0; color:var(--muted); font-size:17px; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:38px; }
+    .card { min-height:270px; display:flex; flex-direction:column; padding:24px; border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,.94); box-shadow:0 12px 34px #14213d0a; }
+    .card-index { color:var(--blue); font-size:12px; font-weight:700; letter-spacing:.1em; }
+    .card h2 { margin:18px 0 0; font-size:24px; line-height:1.25; }
+    .card p { margin:12px 0 0; color:var(--muted); font-size:14px; }
+    .card a { display:inline-flex; align-items:center; gap:8px; margin-top:auto; padding-top:26px; color:var(--blue); font-weight:700; text-decoration:none; }
+    .note { margin-top:26px; padding:16px 18px; border:1px solid #cfdaf0; border-radius:12px; color:#45536c; background:#fff; font-size:13px; }
+    @media (max-width:860px) { main { padding-top:34px; } .grid { grid-template-columns:1fr; } .card { min-height:0; } .card a { padding-top:20px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">AIOPS / GITHUB PAGES DEMO</p>
+    <h1>把告警、排查、交接与知识依据放进一张值班工作台。</h1>
+    <p class="intro">这是 AIOps 智能运维与知识助手平台的静态演示版。所有接口都使用浏览器内的 Mock API，无需启动 Java、Milvus 或模型服务即可完整体验页面交互。</p>
+    <section class="grid" aria-label="页面入口">
+      <article class="card"><span class="card-index">01 / ON-CALL</span><h2>值班工作台</h2><p>活动告警队列、同屏诊断、日志、知识依据与告警上下文追问。</p><a href="workbench-v2.html">进入工作台 <span aria-hidden="true">→</span></a></article>
+      <article class="card"><span class="card-index">02 / INCIDENT</span><h2>故障深挖与交接</h2><p>结构化事实、诊断假设、日志证据、处理记录和 Markdown 交接报告。</p><a href="incident-v2.html">进入故障深挖 <span aria-hidden="true">→</span></a></article>
+      <article class="card"><span class="card-index">03 / KNOWLEDGE</span><h2>知识助手</h2><p>知识库优先与通用问答双模式，展示召回来源和浏览器本地会话。</p><a href="knowledge-v2.html">进入知识助手 <span aria-hidden="true">→</span></a></article>
+    </section>
+    <p class="note">演示数据均为静态 Mock：告警、日志、文档、诊断和知识问答不会连接任何真实生产系统，也不会执行变更。完整项目同时保留 Spring Boot 后端源码与本地部署脚本。</p>
+  </main>
+</body>
+</html>

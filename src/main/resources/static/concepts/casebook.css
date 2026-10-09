@@ -1,0 +1,156 @@
+.casebook {
+  --case-ink: #1e2522;
+  --case-muted: #66706b;
+  --case-line: #cfd3cc;
+  --case-orange: #b95039;
+  --case-green: #2c7155;
+  min-height: 100vh;
+  color: var(--case-ink);
+  background: #f4f5f1;
+}
+.casebook .concept-brand small, .casebook .eyebrow, .casebook .muted { color: var(--case-muted); }
+.casebook-masthead { padding: 24px clamp(18px, 4vw, 58px) 28px; border-bottom: 1px solid var(--case-line); }
+.casebook-masthead .case-number {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  color: var(--case-muted);
+  font: 10px var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.casebook-masthead h1 {
+  max-width: 1000px;
+  margin-top: 22px;
+  font: 700 clamp(31px, 5vw, 64px)/1.04 var(--serif);
+  letter-spacing: -.04em;
+}
+.casebook-deck { max-width: 760px; margin-top: 16px; color: var(--case-muted); font-size: 15px; }
+.casebook-meta { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 24px; color: var(--case-muted); font: 11px var(--mono); }
+.casebook-layout {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr) 250px;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+.casebook-index, .casebook-notes { padding: 30px 22px 50px; }
+.casebook-index { border-right: 1px solid var(--case-line); }
+.casebook-notes { border-left: 1px solid var(--case-line); }
+.casebook-index h2, .casebook-notes h2 {
+  margin-bottom: 13px;
+  font: 700 13px var(--mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.casebook-nav-button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid var(--case-line);
+  color: var(--case-muted);
+  background: transparent;
+  text-align: left;
+  font-size: 12px;
+}
+.casebook-nav-button:hover, .casebook-nav-button.active { color: var(--case-orange); }
+.casebook-main { min-width: 0; padding: 40px clamp(20px, 4vw, 58px) 70px; }
+.casebook-section { max-width: 840px; scroll-margin-top: 30px; }
+.casebook-section + .casebook-section { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--case-line); }
+.casebook-section h2 { font: 700 25px/1.2 var(--serif); }
+.casebook-section > p { max-width: 760px; margin-top: 13px; color: #4b5550; font-size: 14px; }
+.casebook-verdict { margin-top: 24px; padding: 20px 22px; border-left: 4px solid var(--case-orange); background: #eeeae3; }
+.casebook-verdict strong { display: block; font: 700 19px/1.35 var(--serif); }
+.casebook-verdict p { margin-top: 8px; color: #525b56; font-size: 13px; }
+.casebook-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 24px;
+  border-top: 1px solid var(--case-line);
+  border-bottom: 1px solid var(--case-line);
+}
+.casebook-fact { padding: 17px 15px; border-right: 1px solid var(--case-line); }
+.casebook-fact:last-child { border-right: 0; }
+.casebook-fact small { color: var(--case-muted); font: 10px var(--mono); text-transform: uppercase; }
+.casebook-fact b { display: block; margin-top: 9px; font: 700 19px var(--mono); }
+.casebook-exhibit {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) 96px;
+  gap: 16px;
+  align-items: start;
+  padding: 19px 0;
+  border: 0;
+  border-bottom: 1px solid var(--case-line);
+  background: transparent;
+  text-align: left;
+}
+.casebook-exhibit:hover, .casebook-exhibit.expanded { background: #eff1ec; }
+.casebook-exhibit-id { color: var(--case-orange); font: 11px var(--mono); }
+.casebook-exhibit h3 { font-size: 14px; }
+.casebook-exhibit p { margin-top: 6px; color: var(--case-muted); font-size: 12px; }
+.casebook-exhibit-detail {
+  display: none;
+  margin-top: 12px;
+  padding: 13px 15px;
+  border-left: 2px solid var(--case-line);
+  color: #4a544f;
+  background: #f7f8f5;
+  font-size: 12px;
+}
+.casebook-exhibit.expanded .casebook-exhibit-detail { display: block; }
+.casebook-exhibit-source { color: var(--case-muted); font: 10px/1.6 var(--mono); text-align: right; }
+.casebook-timeline { margin-top: 22px; border-top: 1px solid var(--case-line); }
+.casebook-time-row {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--case-line);
+}
+.casebook-time-row time { color: var(--case-muted); font: 11px var(--mono); }
+.casebook-time-row strong { font-size: 13px; }
+.casebook-time-row p { margin-top: 5px; color: var(--case-muted); font-size: 12px; }
+.casebook-note { padding: 14px 0; border-bottom: 1px solid var(--case-line); }
+.casebook-note span { display: block; color: var(--case-muted); font: 10px var(--mono); text-transform: uppercase; }
+.casebook-note strong { display: block; margin-top: 6px; font-size: 12px; }
+.casebook-note p { margin-top: 5px; color: var(--case-muted); font-size: 11px; }
+.casebook-note.verified strong { color: var(--case-green); }
+.casebook-note.open strong { color: var(--case-orange); }
+
+@media (max-width: 1180px) {
+  .casebook-layout { grid-template-columns: 165px minmax(0, 1fr); }
+  .casebook-notes {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    border-top: 1px solid var(--case-line);
+    border-left: 0;
+  }
+}
+@media (max-width: 860px) {
+  .casebook-layout { display: block; }
+  .casebook-index {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 16px 20px;
+    border-right: 0;
+    border-bottom: 1px solid var(--case-line);
+  }
+  .casebook-index h2 { display: none; }
+  .casebook-nav-button { width: auto; min-width: max-content; padding: 5px 10px; border: 1px solid var(--case-line); }
+  .casebook-notes { display: block; border-left: 0; }
+}
+@media (max-width: 620px) {
+  .casebook-main, .casebook-notes { padding-left: 16px; padding-right: 16px; }
+  .casebook-facts { grid-template-columns: 1fr; }
+  .casebook-fact { border-right: 0; border-bottom: 1px solid var(--case-line); }
+  .casebook-fact:last-child { border-bottom: 0; }
+  .casebook-exhibit { grid-template-columns: 42px minmax(0, 1fr); }
+  .casebook-exhibit-source { grid-column: 2; text-align: left; }
+}

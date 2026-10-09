@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>事故卷宗 | AIOps 智能运维</title>
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="casebook.css">
+</head>
+<body class="casebook">
+  <header class="concept-top">
+    <a class="concept-brand" href="index.html">
+      <span class="concept-brand-mark">A</span>
+      <span>AIOps <small>Casebook</small></span>
+    </a>
+    <div class="concept-actions">
+      <span class="eyebrow">INCIDENT 2026-10-09 / P1</span>
+      <a class="concept-link" href="index.html">返回试样</a>
+    </div>
+  </header>
+
+  <header class="casebook-masthead">
+    <div class="case-number"><span>事故卷宗 / CASEBOOK</span><span>CASE NO. 20261009-042</span></div>
+    <h1>订单服务响应延迟升高</h1>
+    <p class="casebook-deck">一次由慢 SQL 引发的数据库连接池等待。这里不先给结论，而是把证据摆在同一张桌上，再逐层建立事实、推断与行动。</p>
+    <div class="casebook-meta">
+      <span>状态 / 调查中</span>
+      <span>影响 / 订单写入链路</span>
+      <span>开始 / 22:18:14</span>
+      <span>负责人 / 王蕾</span>
+    </div>
+  </header>
+
+  <div class="casebook-layout">
+    <nav class="casebook-index" aria-label="卷宗目录">
+      <h2>目录 / Index</h2>
+      <button class="casebook-nav-button active" type="button" data-case-target="case-summary">01 摘要 <span>→</span></button>
+      <button class="casebook-nav-button" type="button" data-case-target="case-evidence">02 证据 <span>→</span></button>
+      <button class="casebook-nav-button" type="button" data-case-target="case-timeline">03 时间线 <span>→</span></button>
+      <button class="casebook-nav-button" type="button" data-case-target="case-conclusion">04 结论 <span>→</span></button>
+    </nav>
+
+    <main class="casebook-main">
+      <section class="casebook-section" id="case-summary">
+        <p class="eyebrow">01 / SUMMARY</p>
+        <h2>先记录发生了什么</h2>
+        <p>22:18 起，订单服务 P95 延迟从 640ms 升至 1.82s，写入接口错误率同步上升。下游网关保持稳定，异常集中在订单服务到主数据库之间。</p>
+        <div class="casebook-verdict">
+          <strong>当前判断：连接池等待是症状，慢 SQL 更像是触发源。</strong>
+          <p>这个判断来自三组相互印证的证据，目前尚未确认具体 SQL 与数据分布变化的关系。</p>
+        </div>
+        <div class="casebook-facts">
+          <div class="casebook-fact"><small>P95 latency</small><b>1.82s</b></div>
+          <div class="casebook-fact"><small>Pool wait</small><b>842ms</b></div>
+          <div class="casebook-fact"><small>Confidence</small><b>78%</b></div>
+        </div>
+      </section>
+
+      <section class="casebook-section" id="case-evidence">
+        <p class="eyebrow">02 / EVIDENCE</p>
+        <h2>证据按编号归档</h2>
+        <p>每条证据都保留来源、时间与可验证的含义。点击展开原始摘录。</p>
+        <div class="casebook-exhibits">
+          <button class="casebook-exhibit expanded" type="button">
+            <span class="casebook-exhibit-id">EX-01</span>
+            <span>
+              <h3>订单服务 P95 在 22:18 突破 1.5s</h3>
+              <p>指标来源：order-api RED dashboard，持续 11 分钟。</p>
+              <span class="casebook-exhibit-detail">原始摘录：P95 640ms → 1.82s；请求量没有明显变化，说明不是单纯流量突增。</span>
+            </span>
+            <span class="casebook-exhibit-source">METRICS<br>22:18:14</span>
+          </button>
+          <button class="casebook-exhibit" type="button">
+            <span class="casebook-exhibit-id">EX-02</span>
+            <span>
+              <h3>数据库连接池等待时间同步升至 842ms</h3>
+              <p>与订单服务延迟曲线高度重合，连接数维持在 96/100。</p>
+              <span class="casebook-exhibit-detail">原始摘录：pool_wait_p95 300ms → 842ms；active_connections 96；没有连接泄漏迹象。</span>
+            </span>
+            <span class="casebook-exhibit-source">DATABASE<br>22:19:02</span>
+          </button>
+          <button class="casebook-exhibit" type="button">
+            <span class="casebook-exhibit-id">EX-03</span>
+            <span>
+              <h3>慢查询日志出现同一条订单明细 SQL</h3>
+              <p>执行时间从 180ms 上升到 2.4s，扫描行数增加。</p>
+              <span class="casebook-exhibit-detail">原始摘录：SELECT order_detail ... WHERE created_at &gt; ?；平均扫描行数 12k → 480k。</span>
+            </span>
+            <span class="casebook-exhibit-source">SLOW LOG<br>22:20:37</span>
+          </button>
+          <button class="casebook-exhibit" type="button">
+            <span class="casebook-exhibit-id">EX-04</span>
+            <span>
+              <h3>网关错误率保持基线，未出现上游异常</h3>
+              <p>排除网关与外部依赖作为首要触发源。</p>
+              <span class="casebook-exhibit-detail">原始摘录：edge-gateway 5xx 0.21%，与过去 7 天同时段基线一致。</span>
+            </span>
+            <span class="casebook-exhibit-source">GATEWAY<br>22:21:10</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="casebook-section" id="case-timeline">
+        <p class="eyebrow">03 / TIMELINE</p>
+        <h2>把调查过程写进时间线</h2>
+        <div class="casebook-timeline">
+          <div class="casebook-time-row"><time>22:18</time><div><strong>告警触发</strong><p>订单服务 P95 与错误率同时越过阈值。</p></div></div>
+          <div class="casebook-time-row"><time>22:19</time><div><strong>确认症状边界</strong><p>网关稳定，异常集中在订单服务与主数据库之间。</p></div></div>
+          <div class="casebook-time-row"><time>22:20</time><div><strong>建立首条证据链</strong><p>连接池等待与订单延迟曲线重合，开始检索慢 SQL。</p></div></div>
+          <div class="casebook-time-row"><time>22:21</time><div><strong>记录待验证假设</strong><p>数据分布变化或索引失效导致扫描行数增加。</p></div></div>
+        </div>
+      </section>
+
+      <section class="casebook-section" id="case-conclusion">
+        <p class="eyebrow">04 / CONCLUSION</p>
+        <h2>结论必须能继续被验证</h2>
+        <p>当前证据支持先检查订单明细查询的执行计划，再评估是否需要临时限流。未确认前，不建议直接重启数据库或扩大连接池。</p>
+      </section>
+    </main>
+
+    <aside class="casebook-notes">
+      <h2>边上批注 / Notes</h2>
+      <article class="casebook-note verified"><span>已核实</span><strong>网关不是触发源</strong><p>错误率与过去 7 天基线一致。</p></article>
+      <article class="casebook-note open"><span>待验证</span><strong>订单明细 SQL 是否走错索引</strong><p>需要比对执行计划与数据分布。</p></article>
+      <article class="casebook-note"><span>下一步</span><strong>在只读副本上执行 EXPLAIN</strong><p>避免对主库产生额外压力。</p></article>
+    </aside>
+  </div>
+
+  <script src="concepts.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>信号甲板 | AIOps 智能运维</title>
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="signal.css">
+</head>
+<body class="signal">
+  <header class="concept-top">
+    <a class="concept-brand" href="index.html">
+      <span class="concept-brand-mark">A</span>
+      <span>AIOps <small>Signal deck</small></span>
+    </a>
+    <div class="concept-actions">
+      <span class="signal-status">live / 值班中</span>
+      <a class="concept-link" href="index.html">返回试样</a>
+    </div>
+  </header>
+
+  <main class="signal-layout">
+    <aside class="signal-rail">
+      <p class="signal-section-label">Signal queue / 信号队列</p>
+      <button class="signal-filter active" type="button" aria-pressed="true">待处置 <strong>07</strong></button>
+      <button class="signal-filter" type="button" aria-pressed="false">观察中 <strong>12</strong></button>
+      <button class="signal-filter" type="button" aria-pressed="false">今日已闭环 <strong>31</strong></button>
+      <p class="signal-rail-note">聚焦当前 P1 故障。所有动作都保留操作者与时间戳，便于交接和复盘。</p>
+      <p class="signal-section-label" style="margin-top:30px">Team / 当前值班</p>
+      <p class="muted" style="font-size:12px">基础架构组 · 20:00-08:00<br>张晓 / 王蕾 / 你</p>
+    </aside>
+
+    <section class="signal-main">
+      <div class="signal-main-head">
+        <div>
+          <p class="eyebrow">INCIDENT-CURRENT / 订单域</p>
+          <h1>订单服务响应延迟升高</h1>
+          <p class="muted" style="margin-top:8px">从告警出现到定位根因，预计仍需 6 分钟。</p>
+        </div>
+        <div class="signal-clock">2026-10-09<br>22:18:42 CST</div>
+      </div>
+
+      <div class="signal-metrics" aria-label="核心指标">
+        <article class="signal-metric">
+          <span>P95 Latency</span>
+          <strong>1.82s</strong>
+          <small>较基线 +183%</small>
+        </article>
+        <article class="signal-metric">
+          <span>Error rate</span>
+          <strong>4.7%</strong>
+          <small>过去 5 分钟</small>
+        </article>
+        <article class="signal-metric">
+          <span>Pool wait</span>
+          <strong>842ms</strong>
+          <small>阈值 300ms</small>
+        </article>
+        <article class="signal-metric">
+          <span>Active conns</span>
+          <strong>96 / 100</strong>
+          <small>连接池接近饱和</small>
+        </article>
+      </div>
+
+      <div class="signal-tracks" aria-label="故障信号">
+        <button class="signal-track critical selected" type="button" data-signal="orders">
+          <span class="signal-track-name"><strong>订单服务响应延迟升高</strong><small>order-api · 10.24.18.32</small></span>
+          <span class="signal-wave" aria-hidden="true"><i style="height:11px"></i><i style="height:17px"></i><i style="height:25px"></i><i style="height:18px"></i><i style="height:27px"></i><i style="height:13px"></i><i style="height:22px"></i><i style="height:28px"></i><i style="height:16px"></i><i style="height:24px"></i></span>
+          <span class="signal-track-state">critical</span>
+          <span class="signal-track-time">00:28</span>
+        </button>
+        <button class="signal-track warn" type="button" data-signal="pool">
+          <span class="signal-track-name"><strong>数据库连接池等待时间升高</strong><small>mysql-prod · 10.24.16.11</small></span>
+          <span class="signal-wave" aria-hidden="true"><i style="height:8px"></i><i style="height:14px"></i><i style="height:19px"></i><i style="height:24px"></i><i style="height:17px"></i><i style="height:26px"></i><i style="height:20px"></i><i style="height:25px"></i><i style="height:13px"></i><i style="height:18px"></i></span>
+          <span class="signal-track-state">warn</span>
+          <span class="signal-track-time">01:04</span>
+        </button>
+        <button class="signal-track warn" type="button" data-signal="sql">
+          <span class="signal-track-name"><strong>慢 SQL 与连接池超时</strong><small>mysql-prod · slowlog correlation</small></span>
+          <span class="signal-wave" aria-hidden="true"><i style="height:12px"></i><i style="height:20px"></i><i style="height:15px"></i><i style="height:23px"></i><i style="height:19px"></i><i style="height:27px"></i><i style="height:14px"></i><i style="height:21px"></i><i style="height:17px"></i><i style="height:24px"></i></span>
+          <span class="signal-track-state">warn</span>
+          <span class="signal-track-time">01:18</span>
+        </button>
+        <button class="signal-track ok" type="button" data-signal="gateway">
+          <span class="signal-track-name"><strong>网关错误率回归基线</strong><small>edge-gateway · 10.24.9.18</small></span>
+          <span class="signal-wave" aria-hidden="true"><i style="height:8px"></i><i style="height:10px"></i><i style="height:9px"></i><i style="height:12px"></i><i style="height:11px"></i><i style="height:14px"></i><i style="height:10px"></i><i style="height:12px"></i><i style="height:9px"></i><i style="height:11px"></i></span>
+          <span class="signal-track-state">ok</span>
+          <span class="signal-track-time">03:10</span>
+        </button>
+      </div>
+    </section>
+
+    <aside class="signal-focus">
+      <p class="eyebrow">ACTIVE FOCUS / 当前信号</p>
+      <h2 data-focus-title>订单服务响应延迟升高</h2>
+      <p class="signal-focus-lead" data-focus-lead>P95 从 640ms 升至 1.82s，错误率同步抬升。订单写入链路已受影响。</p>
+      <dl class="signal-facts">
+        <div class="signal-fact"><dt>来源</dt><dd data-focus-source>order-api</dd></div>
+        <div class="signal-fact"><dt>首个异常</dt><dd data-focus-time>22:18:14</dd></div>
+        <div class="signal-fact"><dt>关联信号</dt><dd data-focus-link>连接池等待时间升高</dd></div>
+        <div class="signal-fact"><dt>置信度</dt><dd data-focus-confidence>78%</dd></div>
+      </dl>
+      <div class="signal-run" aria-label="排查步骤">
+        <p class="signal-section-label" style="margin:0 0 5px">Runbook / 30 秒排查</p>
+        <div class="signal-run-line done"><i class="signal-run-dot"></i><span>拉取最近异常日志</span><span>00:08</span></div>
+        <div class="signal-run-line done"><i class="signal-run-dot"></i><span>对齐订单与数据库指标</span><span>00:19</span></div>
+        <div class="signal-run-line active"><i class="signal-run-dot"></i><span>确认慢 SQL 与锁等待</span><span>进行中</span></div>
+        <div class="signal-run-line"><i class="signal-run-dot"></i><span>执行安全回滚或限流</span><span>待确认</span></div>
+      </div>
+      <div class="signal-focus-actions">
+        <button class="concept-button primary" type="button" data-signal-action="claim">领取处置</button>
+        <button class="concept-button" type="button" data-signal-action="mute">静音 15 分钟</button>
+      </div>
+    </aside>
+  </main>
+
+  <label class="signal-command" for="signal-command">
+    <input id="signal-command" type="text" placeholder="输入命令，例如：查看连接池等待" autocomplete="off">
+    <kbd>Enter</kbd>
+  </label>
+
+  <script src="concepts.js"></script>
+</body>
+</html>
