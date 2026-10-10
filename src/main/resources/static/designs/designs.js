@@ -21,7 +21,7 @@ const escapeHtml = text => String(text).replace(/[&<>"']/g, character => ({'&':'
 const button = (label, action, primary = false, glyph = '') => `<button class="btn${primary ? ' primary' : ''}" data-action="${action}">${glyph ? icon(glyph) : ''}${label}</button>`;
 const brand = `<a class="brand" href="index.html" aria-label="返回三版设计方案"><span class="brand-mark">${icon('pulse')}</span><span><strong>AIOps</strong><small>智能运维与知识助手平台</small></span></a>`;
 const demoBadge = `<span class="pill amber"><span class="dot"></span>交互原型 · 示例数据</span>`;
-const footer = `<footer class="footer"><span>基于 SuperBizAgent 二次开发 · Apache-2.0</span><span><a href="index.html">比较三版设计</a> · <a href="http://localhost:9900/" target="_blank" rel="noopener">打开已部署应用 ↗</a></span></footer>`;
+const footer = `<footer class="footer"><span>本人独立开发 · Apache-2.0</span><span><a href="index.html">比较三版设计</a> · <a href="http://localhost:9900/" target="_blank" rel="noopener">打开已部署应用 ↗</a></span></footer>`;
 const alerts = [
     {id:'ALT-1024', level:'P1', title:'订单服务响应延迟升高', service:'order-service', metric:'P95 延迟 > 2,000 ms', time:'14:32:08', root:'数据库连接池等待时间升高', detail:'订单服务慢请求与数据库连接池等待日志在同一时间窗口出现。建议先核对连接占用情况，再检查近期慢 SQL；目前证据不足以直接认定根因。'},
     {id:'ALT-1023', level:'P2', title:'应用实例 CPU 持续偏高', service:'api-gateway', metric:'CPU 使用率 > 85%', time:'14:28:41', root:'流量峰值与 CPU 升高存在时间关联', detail:'网关 CPU 使用率升高与请求量增长同时出现。建议对比每个实例的流量分布，并检查热点接口与线程栈。'},
@@ -96,7 +96,7 @@ const actions = {
     'nav-incidents':() => {location.href='incident.html';},
     'nav-assistant':() => {location.href='knowledge.html';},
     'nav-knowledge':() => modal('运维知识库',`<p>已索引文档的呈现示例。点击文档可查看片段。</p>${docRows()}<div class="modal-actions">${button('添加文档','upload',true,'upload')}</div>`),
-    about:() => modal('关于本项目',`<p>AIOps 智能运维与知识助手平台</p><p>基于 SuperBizAgent 的二次开发项目，原项目使用 Apache-2.0 许可。本组页面为新增的三版 UI 设计原型。</p><p>原有基础能力：Agent 对话、工具调用、Milvus 知识检索与智能运维分析。当前新增工作：模型接入适配、本地向量化部署、连接与超时修复，以及页面设计探索。</p><p>此处为交互预览；告警、图表、引用与回答均为示例。点击“打开已部署应用”可体验现有真实接口。</p>`),
+    about:() => modal('关于本项目',`<p>AIOps 智能运维与知识助手平台</p><p>本项目由本人独立开发，使用 Apache-2.0 许可。本组页面为三版 UI 设计原型。</p><p>核心能力包括：Agent 对话、工具调用、Milvus 知识检索、智能运维分析、模型接入适配、本地向量化部署、连接与超时处理，以及页面设计探索。</p><p>此处为交互预览；告警、图表、引用与回答均为示例。点击“打开已部署应用”可体验现有真实接口。</p>`),
     report:() => modal('诊断报告 · 示例',`<span class="pill">${selectedAlert.id}</span><div class="result-box"><h3>${escapeHtml(selectedAlert.title)}</h3><p>${escapeHtml(selectedAlert.detail)}</p></div><h3>下一步排查</h3><ul><li>核对告警时间窗口中的指标和日志。</li><li>比较近期发布与配置变更。</li><li>验证根因假设后，由值班人员决定处理方案。</li></ul><p>本报告为设计演示，未对真实服务执行诊断或变更。</p><div class="modal-actions">${button('导出 Markdown','export',true,'file')}</div>`),
     evidence:() => modal('诊断依据与不确定项',`<div class="result-box"><h3>01 / 指标 · 示例</h3><p>P95 延迟与连接池等待数在同一时间窗口升高。</p></div><div class="result-box"><h3>02 / 日志 · 示例</h3><p>Connection is not available；pending threads: 24。</p></div><div class="result-box"><h3>03 / 运维知识</h3><p>连接池排查指南建议优先核对长事务与慢 SQL。</p><button class="evidence-link" data-source="0">查看文档片段 ↗</button></div><p>尚未验证：数据库负载、锁等待、连接泄漏与发布影响。相关性不足以证明因果关系。</p>`),
     logs:() => modal('关联日志 · 示例',`<p class="mono">14:32:10 ERROR Connection is not available\n14:32:10 request timed out after 30000ms\n14:32:12 WARN HikariPool — pending threads: 24\n14:32:14 WARN Slow query: duration=2840ms\n14:32:15 trace=demo-a72f service=order-service</p><p>未连接生产日志服务。此日志仅用于展示故障分析工作流。</p>`),
