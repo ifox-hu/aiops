@@ -72,7 +72,7 @@ actions.logs=async()=>{
 function documentRows(){return documents.map((doc,index)=>`<div class="doc-row"><span class="doc-icon">MD</span><div class="doc-copy"><strong>${escapeHtml(doc.name)}</strong><small>${Math.ceil(doc.size/1024)} KB · 已上传</small></div><button class="text-btn" data-document="${index}">查看 ↗</button></div>`).join('') || '<p style="padding:20px">暂无文档，请上传 Markdown 或 TXT 文件。</p>';}
 actions['nav-knowledge']=()=>modal('知识文档',`${documentRows()}<div class="modal-actions">${button('上传并索引','upload',true,'upload')}</div>`);
 actions.upload=()=>modal('上传知识文档',`<p>支持 Markdown / TXT。上传后由本地向量服务创建索引。</p><input type="file" id="live-file" accept=".md,.markdown,.txt" aria-label="选择知识文档"><p id="upload-status" role="status">请选择文件</p>`);
-actions.about=()=>modal('AIOps 智能运维与知识助手平台',`<p>本项目由本人独立开发，使用 Apache-2.0 许可。</p><p>已接入告警查询、日志工具、Agent 诊断、Milvus 文档检索与流式问答。告警和日志是否模拟由后端配置决定。未接入真实生产指标、自动变更或持久化会话数据库。</p>`);
+actions.about=()=>modal('AIOps 智能运维与知识助手平台',`<p>本项目采用 AI 辅助开发，使用 Apache-2.0 许可。</p><p>已接入告警查询、日志工具、Agent 诊断、Milvus 文档检索与流式问答。告警和日志是否模拟由后端配置决定。未接入真实生产指标、自动变更或持久化会话数据库。</p>`);
 sourceModal=index=>{const source=sources[index];if(source)modal(sourceName(source),`<span class="pill">实际召回片段</span><p>${escapeHtml(source.content)}</p><p>向量距离：${source.score}（L2 距离，不代表可信度）</p>`);};
 function currentAnswerMode(){return document.querySelector('[data-answer-mode][aria-pressed="true"]')?.dataset.answerMode || 'knowledge';}
 function renderSources(){
@@ -133,7 +133,7 @@ document.addEventListener('submit',async event=>{
 });
 async function initializePlatform(){
     document.querySelectorAll('.top-actions .pill').forEach(node=>{node.textContent='已连接后端 · 状态加载中';});
-    document.querySelectorAll('.footer').forEach(node=>{node.innerHTML='<span>本人独立开发 · Apache-2.0</span><span>模型诊断仅提供建议，不执行系统变更</span>';});
+    document.querySelectorAll('.footer').forEach(node=>{node.innerHTML='<span>AI 辅助开发 · Apache-2.0</span><span>模型诊断仅提供建议，不执行系统变更</span>';});
     if(DESIGN==='knowledge'){
         document.getElementById('chat-scroll').innerHTML='<div class="result-box"><h3>运维知识问答</h3><p>输入问题，从已上传文档中检索依据并生成回答。</p></div>';
         document.querySelectorAll('.history-caption,.history-item').forEach(node=>node.remove());

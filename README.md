@@ -5,7 +5,7 @@
 - 在线演示：<https://ifox-hu.github.io/superbizagent-aiops/>
 - GitHub 仓库：<https://github.com/ifox-hu/superbizagent-aiops>
 - 技术栈：Java 17、Spring Boot 3.2.0、Spring AI 1.1.0、Spring AI Alibaba 1.1.0.0-RC2、Milvus、原生 HTML/CSS/JavaScript
-- 本项目由本人独立开发，仓库使用 Apache-2.0 许可证
+- 本项目采用 AI 辅助开发，仓库使用 Apache-2.0 许可证
 - Pages 静态版只使用浏览器内 Mock API；本地完整版才会连接模型、Milvus、Prometheus 或 CLS
 
 > 当前实现用于值班工作台、RAG 问答、Agent 诊断和多 Agent 编排的技术实践与演示，不代表已经具备生产级自动运维能力。系统不会自动执行扩容、回滚、重启或配置变更，诊断结果只应作为排查参考。
@@ -576,7 +576,7 @@ node .\deployment\check-diagnosis-scroll.cjs
 
 ## 18. 许可证和开发说明
 
-- 本项目由本人独立开发。
+- 本项目采用 AI 辅助开发。
 - 仓库使用 Apache-2.0 许可证，许可证全文见 [LICENSE](LICENSE)。
 - 仓库当前可确认的远程地址为 <https://github.com/ifox-hu/superbizagent-aiops>。
 - 代码中保留了若干与 SuperBizAgent、DashScope、Milvus 和 Spring AI Alibaba 相关的类名、配置名或注释，这些名称用于兼容现有代码和配置。除 Apache-2.0 许可证外，其他来源与版权归属如需对外声明：**待确认**。
