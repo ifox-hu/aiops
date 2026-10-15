@@ -2,8 +2,8 @@
 
 面向值班、故障排查与交接场景的 AIOps 工作台，把活动告警、诊断证据、处理记录和知识依据集中到同一套页面中。仓库同时提供可在 GitHub Pages 独立运行的静态演示版，以及包含 Spring Boot、Spring AI、Milvus 和 RAG 链路的本地完整版。
 
-- 在线演示：<https://ifox-hu.github.io/superbizagent-aiops/>
-- GitHub 仓库：<https://github.com/ifox-hu/superbizagent-aiops>
+- 在线演示：<https://ifox-hu.github.io/aiops/>
+- GitHub 仓库：<https://github.com/ifox-hu/aiops>
 - 技术栈：Java 17、Spring Boot 3.2.0、Spring AI 1.1.0、Spring AI Alibaba 1.1.0.0-RC2、Milvus、原生 HTML/CSS/JavaScript
 - 仓库使用 Apache-2.0 许可证
 - Pages 静态版只使用浏览器内 Mock API；本地完整版才会连接模型、Milvus、Prometheus 或 CLS
@@ -21,8 +21,8 @@ AIOps 智能运维与知识助手平台围绕“先处置，再解释”的值�
 
 | 项目 | 地址或说明 |
 | --- | --- |
-| GitHub Pages 在线演示 | <https://ifox-hu.github.io/superbizagent-aiops/> |
-| GitHub 仓库 | <https://github.com/ifox-hu/superbizagent-aiops> |
+| GitHub Pages 在线演示 | <https://ifox-hu.github.io/aiops/> |
+| GitHub 仓库 | <https://github.com/ifox-hu/aiops> |
 | 静态演示入口 | `docs/index.html` |
 | 完整版默认入口 | `http://localhost:9900/` |
 
@@ -578,7 +578,7 @@ node .\deployment\check-diagnosis-scroll.cjs
 
 - 本项目采用 AI 辅助开发。
 - 仓库使用 Apache-2.0 许可证，许可证全文见 [LICENSE](LICENSE)。
-- 仓库当前可确认的远程地址为 <https://github.com/ifox-hu/superbizagent-aiops>。
+- 仓库当前可确认的远程地址为 <https://github.com/ifox-hu/aiops>。
 - 代码中保留了若干与 SuperBizAgent、DashScope、Milvus 和 Spring AI Alibaba 相关的类名、配置名或注释，这些名称用于兼容现有代码和配置。除 Apache-2.0 许可证外，其他来源与版权归属如需对外声明：**待确认**。
 - 本项目不声称已达到生产级自动运维能力，也不声称能够替代人工应急、变更审批、监控平台或工单系统。
 
