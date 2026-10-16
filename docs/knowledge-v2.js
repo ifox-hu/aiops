@@ -226,6 +226,9 @@ async function ask(question) {
       if (event.type === 'sources') {
         state.sources = event.data || [];
         turn.sources = state.sources;
+        answerNode.previousElementSibling.lastElementChild.textContent = state.mode === 'general'
+          ? '通用问答 · 未检索知识库'
+          : '知识库优先 · 召回 ' + turn.sources.length + ' 个片段';
         renderSources();
         if (state.mode === 'knowledge') answerNode.textContent = '已检索 ' + state.sources.length + ' 个片段，正在生成回答…';
       }

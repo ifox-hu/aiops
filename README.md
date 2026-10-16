@@ -100,6 +100,8 @@ AIOps 智能运维与知识助手平台围绕“先处置，再解释”的值�
 
 ### 知识助手
 
+下图为本地完整版真实问答：全新会话查询 `HighCPUUsage` 的触发条件，回答中的“超过 80%、持续 5 分钟”已与召回文档核对。在线静态演示使用 Mock API。
+
 ![知识助手](deployment/v2-previews/knowledge-v2-desktop-1440x1080.png)
 
 ### 移动端预览
@@ -525,6 +527,14 @@ node .\deployment\check-v2-suite.cjs
 node .\deployment\check-v2-knowledge-general.cjs
 node .\deployment\check-diagnosis-scroll.cjs
 ```
+
+重新验证并生成知识助手的 README 桌面和手机预览图：
+
+```powershell
+node .\deployment\check-knowledge-preview.cjs
+```
+
+该脚本使用全新浏览器会话和真实后端，等待回答完整结束，检查触发阈值、持续时间与召回资料一致，以及来源数量显示正确后才写入截图。未通过时会退出报错。
 
 这些脚本要求本机安装 Microsoft Edge，并依赖脚本中固定的 Edge 路径或本地配置。不同机器上可能需要调整 `EDGE_PATH` 或脚本内的浏览器路径。
 
